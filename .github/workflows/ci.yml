@@ -7,10 +7,12 @@ on:
     branches:
       - master
       - posix_rev
+      - sonarcube
   pull_request:
     branches:
       - master
       - posix_rev
+      - sonarcube
 
 # jobs
 jobs:
@@ -28,7 +30,8 @@ jobs:
           submodules: true
 
       # attach GCC problem matcher... might not work because of submodules... just trying
-      - uses: ammaraskar/gcc-problem-matcher@master
+      - name: custom GCC problem matcher
+        run: echo "::add-matcher::.github/problem-matcher.json"
 
       # step 2: use our custom action to build the project
       - name: Build
